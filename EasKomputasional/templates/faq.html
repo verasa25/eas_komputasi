@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Diabetes Mellitus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<style>
+header, section, footer {
+margin-bottom: 20px;
+}
+
+h1, h2 {
+color: #333;
+}
+
+p {
+color: #666;
+}
+
+form {
+text-align: left;
+}
+
+label {
+display: block;
+margin-top: 10px;
+color: #555;
+}
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+input {
+width: 100%;
+padding: 10px;
+margin-top: 5px;
+border: 1px solid #ddd;
+border-radius: 5px;
+}
+
+button {
+margin-top: 20px;
+padding: 10px 20px;
+background-color: #4CAF50;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+button:hover {
+background-color: #45a049;
+}
+
+#result {
+margin-top: 20px;
+font-size: 1.2em;
+color: #333;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(68, 68, 68, 0.9);
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+}
+nav a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    margin: 0 5px;
+    transition: background 0.3s;
+}
+nav a:hover {
+    background: rgba(85, 85, 85, 0.9);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #111;
+}
+main {
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: lower;
+    bottom: 0;
+    width: 100%;
+}
+#predictionResult, #faqAnswer {
+    margin-top: 20px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#predictionResult, #faqAnswer {
+    margin-top: 20px;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+}
+    </style>
+    <body>
+        <header>
+            <h1>Informasi Lengkap tentang Diabetes Mellitus</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Diabetes</a></li>
+                <li><a href="/faq">Pertanyaan</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <h1>FAQ tentang Diabetes Mellitus</h1>
+            <form id="faqForm">
+                <label for="question">Pilih pertanyaan tentang diabetes:</label>
+                <select id="question" name="question" required>
+                    <option value="">--Pilih Pertanyaan--</option>
+                    <option value="Apa itu diabetes mellitus?">Apa itu diabetes mellitus?</option>
+                    <option value="Apa perbedaan diabetes tipe 1 dan tipe 2?">Apa perbedaan diabetes tipe 1 dan tipe 2?</option>
+                    <option value="Apa penyebab diabetes mellitus?">Apa penyebab diabetes mellitus?</option>
+                    <option value="Apa gejala umum diabetes mellitus?">Apa gejala umum diabetes mellitus?</option>
+                    <option value="Bagaimana cara mencegah diabetes mellitus?">Bagaimana cara mencegah diabetes mellitus?</option>
+                    <option value="Apakah diabetes mellitus dapat disembuhkan?">Apakah diabetes mellitus dapat disembuhkan?</option>
+                    <option value="Bagaimana cara mendiagnosis diabetes mellitus?">Bagaimana cara mendiagnosis diabetes mellitus?</option>
+                    <option value="Apa komplikasi yang bisa terjadi akibat diabetes mellitus?">Apa komplikasi yang bisa terjadi akibat diabetes mellitus?</option>
+                </select><br><br>
+                <button type="submit">Dapatkan Jawaban</button>
+            </form>
+            <div id="faqAnswer"></div>
+        </div>
+        <script>
+            document.getElementById('faqForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var form = event.target;
+                var formData = new FormData(form);
+    
+                fetch('/faq_answer', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var answerElement = document.getElementById('faqAnswer');
+                    answerElement.innerHTML = `<h2>Jawaban:</h2><p>${data.answer}</p>`;
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        </script>
+        <footer>
+            <p>&copy; 2024 Mahardika.
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </p>
+        </footer>
+</body>
+</html>

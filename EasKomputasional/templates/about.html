@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Diabetes Mellitus</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tentang Diabetes Mellitus</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Diabetes</a></li>
+            <li><a href="/faq">Pertanyaan</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(68, 68, 68, 0.9);
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        nav a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            margin: 0 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background: rgba(85, 85, 85, 0.9);
+        }
+        
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #333;
+            overflow: hidden;
+        }
+        
+        nav ul li {
+            float: left;
+        }
+        
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        nav ul li a:hover {
+            background-color: #111;
+        }
+        
+        main {
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            color: #333;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: lower;
+            bottom: 0;
+            width: 100%;
+        }
+        </style>
+    <main>
+        <h2>Definisi</h2>
+        <p>{{ diabetes_info['about']['definition'] }}</p>
+
+        <h2>Jenis-Jenis Diabetes</h2>
+        <ul>
+            {% for type in diabetes_info['about']['types'] %}
+            <li><strong>{{ type['name'] }}</strong>: {{ type['description'] }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Gejala</h2>
+        <ul>
+            {% for symptom in diabetes_info['about']['symptoms'] %}
+            <li>{{ symptom }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Pencegahan</h2>
+        <ul>
+            {% for prevention in diabetes_info['about']['prevention'] %}
+            <li>{{ prevention }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Faktor Risiko</h2>
+        <ul>
+            {% for risk in diabetes_info['about']['risk_factors'] %}
+            <li>{{ risk }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Komplikasi</h2>
+        <ul>
+            {% for complication in diabetes_info['about']['complications'] %}
+            <li>{{ complication }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Perawatan</h2>
+        <ul>
+            {% for treatment in diabetes_info['about']['treatment'] %}
+            <li>{{ treatment }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Statistik</h2>
+        <p>{{ diabetes_info['about']['statistics']['global'] }}</p>
+
+        <h3>Statistik Regional</h3>
+        <ul>
+            <li><strong>Asia:</strong> {{ diabetes_info['about']['statistics']['regional']['asia'] }}</li>
+            <li><strong>Afrika:</strong> {{ diabetes_info['about']['statistics']['regional']['africa'] }}</li>
+            <li><strong>Eropa:</strong> {{ diabetes_info['about']['statistics']['regional']['europe'] }}</li>
+            <li><strong>Amerika:</strong> {{ diabetes_info['about']['statistics']['regional']['americas'] }}</li>
+        </ul>
+
+        <h2>Sumber Daya</h2>
+        <ul>
+            {% for resource in diabetes_info['about']['resources'] %}
+            <li><a href="{{ resource['url'] }}" target="_blank">{{ resource['name'] }}</a></li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mahardika.
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </p>
+    </footer>
+</body>
+</html>

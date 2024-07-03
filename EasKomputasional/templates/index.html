@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Informasi Diabetes Mellitus</title>
+        <link rel="stylesheet" href="static/styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Informasi Lengkap tentang Diabetes Mellitus</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Diabetes</a></li>
+                <li><a href="/faq">Pertanyaan</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+            
+            header {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 0;
+                text-align: center;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                background: rgba(68, 68, 68, 0.9);
+                padding: 10px;
+                border-radius: 8px 8px 0 0;
+            }
+            nav a {
+                color: white;
+                padding: 10px;
+                text-decoration: none;
+                margin: 0 5px;
+                transition: background 0.3s;
+            }
+            nav a:hover {
+                background: rgba(85, 85, 85, 0.9);
+            }
+            
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+                background-color: #333;
+                overflow: hidden;
+            }
+            
+            nav ul li {
+                float: left;
+            }
+            
+            nav ul li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+            
+            nav ul li a:hover {
+                background-color: #111;
+            }
+            
+            main {
+                padding: 20px;
+            }
+            
+            h1, h2 {
+                color: #333;
+            }
+            
+            ul {
+                padding-left: 20px;
+            }
+            
+            footer {
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px 0;
+                position: lower;
+                bottom: 0;
+                width: 100%;
+            }
+            
+            .chart-container {
+                margin: 20px auto;
+                width: 80%;
+                max-width: 800px;
+            }
+            
+            </style>
+        <main>
+            <h2>Selamat Datang</h2>
+            <p>Selamat datang di halaman informasi tentang Diabetes Mellitus. Di sini, Anda akan menemukan informasi penting mengenai diabetes, termasuk definisi, jenis, gejala, pencegahan, faktor risiko, komplikasi, perawatan, statistik, dan sumber daya yang dapat membantu Anda mengelola kondisi ini.</p>
+    
+            <!-- Grafik Statistik Diabetes -->
+            <h2>Grafik Statistik Atribut Diabetes</h2>
+            <div class="chart-container">
+                <canvas id="pregnanciesChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="glucoseChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="bloodPressureChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="skinThicknessChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="insulinChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="bmiChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="diabetesPedigreeFunctionChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="ageChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="outcomeChart"></canvas>
+            </div>
+        </main>
+        <main>
+    
+            <!-- Grafik Statistik Deskriptif -->
+            <h2>Grafik Statistik Deskriptif Fitur Diabetes</h2>
+            <div class="chart-container">
+                <canvas id="meanChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="sdChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="skewnessChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="kurtosisChart"></canvas>
+            </div>
+        </main>
+    
+        <script>
+            // Contoh data untuk setiap atribut
+            const sampleData = {
+                pregnancies: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                glucose: [85, 90, 95, 100, 105, 110, 115, 120, 125, 130],
+                bloodPressure: [70, 75, 80, 85, 90, 95, 100, 105, 110, 115],
+                skinThickness: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
+                insulin: [15, 30, 45, 60, 75, 90, 105, 120, 135, 150],
+                bmi: [18.5, 20, 22.5, 25, 27.5, 30, 32.5, 35, 37.5, 40],
+                diabetesPedigreeFunction: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+                age: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65],
+                outcome: [0, 1]
+            };
+    
+            // Fungsi untuk membuat grafik
+            function createChart(ctx, label, data, color) {
+                return new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: data.length}, (_, i) => i + 1),
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            backgroundColor: color,
+                            borderColor: color,
+                            borderWidth: 1,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+    
+            // Inisialisasi setiap grafik
+            createChart(document.getElementById('pregnanciesChart').getContext('2d'), 'Pregnancies', sampleData.pregnancies, 'rgba(255, 99, 132, 1)');
+            createChart(document.getElementById('glucoseChart').getContext('2d'), 'Glucose', sampleData.glucose, 'rgba(54, 162, 235, 1)');
+            createChart(document.getElementById('bloodPressureChart').getContext('2d'), 'Blood Pressure', sampleData.bloodPressure, 'rgba(255, 206, 86, 1)');
+            createChart(document.getElementById('skinThicknessChart').getContext('2d'), 'Skin Thickness', sampleData.skinThickness, 'rgba(75, 192, 192, 1)');
+            createChart(document.getElementById('insulinChart').getContext('2d'), 'Insulin', sampleData.insulin, 'rgba(153, 102, 255, 1)');
+            createChart(document.getElementById('bmiChart').getContext('2d'), 'BMI', sampleData.bmi, 'rgba(255, 159, 64, 1)');
+            createChart(document.getElementById('diabetesPedigreeFunctionChart').getContext('2d'), 'Diabetes Pedigree Function', sampleData.diabetesPedigreeFunction, 'rgba(201, 203, 207, 1)');
+            createChart(document.getElementById('ageChart').getContext('2d'), 'Age', sampleData.age, 'rgba(54, 162, 235, 1)');
+            createChart(document.getElementById('outcomeChart').getContext('2d'), 'Outcome', sampleData.outcome, 'rgba(255, 99, 132, 1)');
+        </script>
+        <script>
+            // Data statistik contoh
+            const statistics = {
+                'Features': ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age'],
+                'Mean': [3.8, 120.9, 69.1, 20.5, 79.8, 31.9, 0.47, 33.2],
+                'SD': [3.4, 32.0, 19.4, 16.0, 115.2, 7.9, 0.33, 11.8],
+                'Skewness': [0.9, 0.5, -1.4, 0.1, 2.3, 0.7, 1.7, 0.6],
+                'Kurtosis': [0.3, -0.2, 1.1, -0.4, 8.2, 0.6, 4.6, -0.3]
+            };
+    
+            // Fungsi untuk membuat grafik
+            function createChart(ctx, label, data, color) {
+                return new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: statistics.Features,
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            backgroundColor: color,
+                            borderColor: color,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+    
+            // Inisialisasi setiap grafik
+            createChart(document.getElementById('meanChart').getContext('2d'), 'Mean', statistics.Mean, 'rgba(54, 162, 235, 0.6)');
+            createChart(document.getElementById('sdChart').getContext('2d'), 'Standard Deviation', statistics.SD, 'rgba(255, 99, 132, 0.6)');
+            createChart(document.getElementById('skewnessChart').getContext('2d'), 'Skewness', statistics.Skewness, 'rgba(75, 192, 192, 0.6)');
+            createChart(document.getElementById('kurtosisChart').getContext('2d'), 'Kurtosis', statistics.Kurtosis, 'rgba(153, 102, 255, 0.6)');
+        </script>
+        <footer>
+            <p>&copy; 2024 Mahardika</p>
+        </footer>
+    </body>
+    </html>
+    
